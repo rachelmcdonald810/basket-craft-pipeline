@@ -8,7 +8,7 @@ load_dotenv()
 QUERY = """
 SELECT
     o.order_id,
-    DATE_FORMAT(o.created_at, '%%Y-%%m') AS month,
+    DATE_FORMAT(o.created_at, '%Y-%m') AS month,
     p.product_name,
     oi.price_usd
 FROM order_items oi
