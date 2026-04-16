@@ -1,5 +1,6 @@
 import os
 import psycopg2
+from psycopg2.extras import execute_values
 import pandas as pd
 from dotenv import load_dotenv
 
@@ -27,9 +28,11 @@ def load(df: pd.DataFrame) -> None:
     cur.execute(CREATE_RAW)
     cur.execute("TRUNCATE TABLE raw_order_items")
     rows = [tuple(row) for row in df.itertuples(index=False, name=None)]
-    cur.executemany(
-        "INSERT INTO raw_order_items (order_id, month, product_name, price_usd) VALUES (%s, %s, %s, %s)",
+    execute_values(
+        cur,
+        "INSERT INTO raw_order_items (order_id, month, product_name, price_usd) VALUES %s",
         rows,
+        page_size=1000,
     )
     conn.commit()
     cur.close()
