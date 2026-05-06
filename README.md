@@ -1,5 +1,7 @@
 # Basket Craft Monthly Sales Pipeline
 
+**Live Dashboard:** https://basket-craft-pipeline-g7kgjtsa3wezqofkkwcdtn.streamlit.app/
+
 ELT pipeline that extracts order data from the Basket Craft MySQL database, loads it into an AWS RDS PostgreSQL instance holding the raw Basket Craft data, and transforms it into a `monthly_sales` summary table for the monthly sales dashboard.
 
 **Dashboard metrics:** revenue, order count, and average order value, grouped by product and month.
